@@ -1,0 +1,8 @@
+services:
+  web:
+    build:
+      context: .
+      args:
+        - MIX_ENV=prod
+    ports:
+      - '5454:5454'
