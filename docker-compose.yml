@@ -3,6 +3,6 @@ services:
     build:
       context: .
       args:
-        - MIX_ENV=prod
+        - MIX_ENV=dev
     ports:
       - '5454:5454'
