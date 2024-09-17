@@ -1,0 +1,16 @@
+_build/
+.elixir_ls/
+.git/
+.vscode/
+docker/
+deps/
+test/
+.dockerignore
+.env
+.formatter.exs
+.gitignore
+docker-compose-prod.yml
+docker-compose.yml
+Dockerfile
+Makefile
+README.md

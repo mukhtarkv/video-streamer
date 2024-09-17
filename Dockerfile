@@ -27,8 +27,15 @@ RUN cp -R /opt/build/_build/${MIX_ENV}/rel /opt/build/built_rel
 FROM elixir:1.16.3-alpine
 
 # Install runtime dependencies and necessary build tools
-RUN apk update && \
-    apk add --no-cache libstdc++ openssl ncurses-libs curl unzip
+RUN apk update && apk add --no-cache \
+    curl \
+    snappy \
+    openssl \
+    zlib-dev \
+    ncurses \
+    readline \
+    libxml2 \
+    libxslt
 
 RUN mkdir /app
 WORKDIR /app
