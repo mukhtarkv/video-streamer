@@ -6,13 +6,18 @@ You need Docker and Docker Compose installed to run this.
 
 Boot it up from the terminal using:
 
+    docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions
     docker compose up
 
 Open web browser and type `http://localhost:5454/video`.
 
+Open new browser tab and type `http://localhost:3000`. You can view logs similar to the screenshot.
+![Grafana Screenshot](./grafana_screenshot.png)
+
 Clean up the project from the terminal using:
 
     docker compose down --rmi=all
+    docker plugin disable loki
 
 ## Enable AWS S3
 

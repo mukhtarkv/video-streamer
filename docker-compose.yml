@@ -6,3 +6,42 @@ services:
         - MIX_ENV=dev
     ports:
       - '5454:5454'
+    depends_on:
+      - loki
+    logging:
+      driver: loki
+      options:
+        loki-url: 'http://localhost:3100/loki/api/v1/push'
+
+  loki:
+    image: grafana/loki:3.0.0
+    ports:
+      - '3100:3100'
+    volumes:
+      - ./docker/loki/loki-config.yml:/etc/loki/loki-config.yml
+      - loki-data-index:/loki-index
+      - loki-data-chunks:/loki-chunks
+    command: '-config.file=/etc/loki/loki-config.yml'
+
+  grafana:
+    environment:
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    entrypoint:
+      - sh
+      - -euc
+      - /run.sh
+    image: grafana/grafana:11.2.0
+    ports:
+      - '3000:3000'
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./docker/grafana/:/etc/grafana/provisioning/
+    depends_on:
+      - loki
+
+volumes:
+  loki-data-index:
+  loki-data-chunks:
+  grafana-data:
