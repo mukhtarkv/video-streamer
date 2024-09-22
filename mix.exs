@@ -8,6 +8,7 @@ defmodule Video.MixProject do
       elixir: "~> 1.16",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
+      test_coverage: [tool: ExCoveralls],
       releases: [
         video_streamer: [
           include_executables_for: [:unix],
@@ -30,12 +31,12 @@ defmodule Video.MixProject do
   defp deps do
     [
       {:plug_cowboy, "~> 2.7"},
-      {:ex_aws, "~> 2.1"},
-      {:ex_aws_s3, "~> 2.0"},
-      {:hackney, "~> 1.9"},
+      {:ex_aws, "~> 2.5"},
+      {:ex_aws_s3, "~> 2.5"},
+      {:hackney, "~> 1.20"},
       {:sweet_xml, "~> 0.6"},
-      {:logger_json, "~> 6.1"},
-      {:decimal, "~> 2.0"}
+      {:mox, "~> 1.2", only: :test},
+      {:excoveralls, "~> 0.18", only: :test}
     ]
   end
 end
