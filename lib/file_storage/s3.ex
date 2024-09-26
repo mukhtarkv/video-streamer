@@ -4,23 +4,17 @@ defmodule Video.FileStorage.S3 do
   require Logger
 
   defp bucket do
-    Application.fetch_env!(:video_streamer, :s3_bucket)
+    Application.get_env(:video_streamer, :s3_bucket)
   end
 
   @impl true
   def stream_file(path) do
     Logger.info("Downloading file from S3: #{path}")
 
-    try do
-      stream =
-        S3.download_file(bucket(), path, :memory)
-        |> ExAws.stream!()
+    stream =
+      S3.download_file(bucket(), path, :memory)
+      |> ExAws.stream!()
 
-      {:ok, stream}
-    rescue
-      e ->
-        Logger.error("Error downloading file from S3: #{e}")
-        {:error, e}
-    end
+    {:ok, stream}
   end
 end

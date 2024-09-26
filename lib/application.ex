@@ -3,6 +3,8 @@ defmodule Video.Application do
 
   @impl Application
   def start(_, _) do
+    Video.Metrics.setup()
+
     children = [
       Video.Streamer
     ]

@@ -5,6 +5,6 @@ defmodule Video.FileStorage do
   def stream_file(path), do: impl().stream_file(path)
 
   defp impl do
-    Application.fetch_env!(:video_streamer, :file_storage)
+    Application.get_env(:video_streamer, :file_storage, Video.FileStorage.Local)
   end
 end
