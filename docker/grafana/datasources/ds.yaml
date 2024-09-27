@@ -11,3 +11,13 @@ datasources:
     isDefault: true
     version: 1
     editable: false
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    orgId: 1
+    isDefault: false
+    editable: false
+    version: 1
+    jsonData:
+      timeInterval: '15s'

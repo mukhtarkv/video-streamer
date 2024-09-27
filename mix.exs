@@ -39,8 +39,8 @@ defmodule Video.MixProject do
       {:ex_aws_s3, "~> 2.5"},
       {:hackney, "~> 1.20"},
       {:sweet_xml, "~> 0.6"},
-      {:prometheus_ex, "~> 3.0"},
-      {:prometheus_plugs, "~> 1.0"},
+      {:telemetry_metrics_prometheus, "~> 1.0"},
+      {:telemetry, "~> 1.0"},
       {:mox, "~> 1.2", only: :test},
       {:excoveralls, "~> 0.18", only: :test}
     ]

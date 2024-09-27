@@ -8,7 +8,6 @@ defmodule Video.Streamer do
   plug(Plug.Logger)
   plug(:match)
   plug(:dispatch)
-  plug(Video.Metrics.PrometheusExporter)
 
   @port Application.compile_env!(:video_streamer, :port)
 
@@ -20,12 +19,8 @@ defmodule Video.Streamer do
     )
   end
 
-  get "/metrics" do
-    Video.Metrics.PrometheusExporter.call(conn, [])
-  end
-
   get "/video" do
-    Metrics.viewed()
+    Metrics.viewed("SampleVideo_1280x720_1mb.mp4")
     stream_video(conn, "SampleVideo_1280x720_1mb.mp4")
   end
 
