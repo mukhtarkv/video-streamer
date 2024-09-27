@@ -14,4 +14,4 @@ docker-compose.yml
 Dockerfile
 Makefile
 README.md
-grafana_screenshot.png
+demo/

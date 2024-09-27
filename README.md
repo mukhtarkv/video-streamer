@@ -11,8 +11,10 @@ Boot it up from the terminal using:
 
 Open web browser and type `http://localhost:5454/video`.
 
-Open new browser tab and type `http://localhost:3000`. You can view logs similar to the screenshot.
-![Grafana Screenshot](./grafana_screenshot.png)
+Open new browser tab and type `http://localhost:3000`. Sign in with default username `admin` and password `admin`.
+You can view logs and metrics similar to the screenshots.
+![Grafana Logs Screenshot](./demo/logs_screenshot.png)
+![Grafana Metrics Screenshot](./demo/metrics_screenshot.png)
 
 Clean up the project from the terminal using:
 

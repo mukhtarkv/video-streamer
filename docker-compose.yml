@@ -5,7 +5,8 @@ services:
       args:
         - MIX_ENV=dev
     ports:
-      - '5454:5454'
+      - 5454:5454
+      - 9568:9568
     depends_on:
       - loki
     logging:
@@ -22,6 +23,21 @@ services:
       - loki-data-index:/loki-index
       - loki-data-chunks:/loki-chunks
     command: '-config.file=/etc/loki/loki-config.yml'
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - '9090:9090'
+    volumes:
+      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    depends_on:
+      - web
 
   grafana:
     environment:
@@ -40,8 +56,10 @@ services:
       - ./docker/grafana/:/etc/grafana/provisioning/
     depends_on:
       - loki
+      - prometheus
 
 volumes:
   loki-data-index:
   loki-data-chunks:
+  prometheus_data:
   grafana-data:
