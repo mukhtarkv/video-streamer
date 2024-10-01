@@ -10,7 +10,5 @@ scrape_configs:
       - source_labels: [__meta_docker_container_label_app]
         regex: .+
         action: keep
-      - source_labels: ['__meta_docker_container_label_app']
-        target_label: 'app'
-      - source_labels: ['__meta_docker_container_label_instance']
-        target_label: 'instance'
+      - action: labelmap
+        regex: __meta_docker_container_label_(app|instance)
