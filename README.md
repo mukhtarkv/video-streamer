@@ -21,9 +21,10 @@ Clean up the project from the terminal using:
     docker compose down --rmi=all
     docker plugin disable loki
 
-## Enable AWS S3
+## Run in Production
 
 To use AWS S3, you need to create S3 bucket and upload video under `priv/videos/` folder.
+Moreover, you need to set up [Grafana Cloud](https://grafana.com/tutorials/) to view logs and metrics in Grafana Labs managed observability platform. You have to update credentials in `docker/alloy/endpoints.json`.
 
 Boot it up from the terminal using:
 

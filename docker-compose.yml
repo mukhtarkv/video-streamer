@@ -6,7 +6,6 @@ services:
         - MIX_ENV=dev
     ports:
       - 5454:5454
-      - 9568:9568
     labels:
       - app=web
       - instance=laptop
@@ -20,7 +19,7 @@ services:
   loki:
     image: grafana/loki:3.0.0
     ports:
-      - '3100:3100'
+      - 3100:3100
     volumes:
       - ./docker/loki/loki-config.yml:/etc/loki/loki-config.yml
       - loki-data-index:/loki-index
@@ -31,7 +30,7 @@ services:
     image: prom/prometheus
     user: root # Requred to access the Docker socket in MacOS and Windows
     ports:
-      - '9090:9090'
+      - 9090:9090
     volumes:
       - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
@@ -56,7 +55,7 @@ services:
       - /run.sh
     image: grafana/grafana:11.2.0
     ports:
-      - '3000:3000'
+      - 3000:3000
     volumes:
       - grafana-data:/var/lib/grafana
       - ./docker/grafana/:/etc/grafana/provisioning/
