@@ -1,0 +1,16 @@
+{
+	"metrics": {
+		"url": "https://prometheus-prod-link.grafana.net/api/prom/push",
+		"basicAuth": {
+			"username": "username",
+			"password": "password"
+		}
+	},
+	"logs": {
+		"url": "https://logs-prod-link.grafana.net/loki/api/v1/push",
+		"basicAuth": {
+			"username": "username",
+			"password": "password"
+		}
+	}
+}

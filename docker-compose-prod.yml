@@ -10,4 +10,25 @@ services:
       - AWS_REGION=${AWS_REGION}
       - S3_BUCKET=${S3_BUCKET}
     ports:
-      - '5454:5454'
+      - 5454:5454
+    labels:
+      metrics_enabled: true
+      app: 'video-streamer'
+
+  alloy:
+    image: grafana/alloy:v1.4.1
+    user: root # Requred to access the Docker socket in MacOS and Windows
+    volumes:
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - './docker/alloy/config.alloy:/etc/alloy/config.alloy'
+      - './docker/alloy/endpoints.json:/etc/alloy/endpoints.json'
+    ports:
+      - 12345:12345
+    command:
+      [
+        'run',
+        '--server.http.listen-addr=0.0.0.0:12345',
+        '--stability.level=public-preview',
+        '/etc/alloy/config.alloy'
+      ]
